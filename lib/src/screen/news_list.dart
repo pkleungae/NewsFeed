@@ -2,6 +2,7 @@ import 'package:NewsFeed/src/app.dart';
 import 'package:flutter/material.dart';
 
 class NewsList extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,4 +12,5 @@ class NewsList extends StatelessWidget {
       body: Text('Show some news here!'),
     );
   }
+
 }
