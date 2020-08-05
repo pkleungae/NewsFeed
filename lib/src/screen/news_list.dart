@@ -33,8 +33,10 @@ class NewsList extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data.length,
             itemBuilder: (context, int index) {
+              //do this when user scoll to that point
               bloc.fetchItem(snapshot.data[index]);
               // return Text('${snapshot.data[index]}');
+              //this block will initate and create in list as widget. but the action code wont be excuted first (try to explain in this way to explain the sequence of listen and fetching problem)
               return NewsListTile(itemId: snapshot.data[index]);
             },
           );
