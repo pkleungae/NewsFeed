@@ -4,6 +4,7 @@ import 'package:NewsFeed/src/blocs/stories_provider.dart';
 import 'package:NewsFeed/src/models/item_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import '../widgets/news_list_tile.dart';
 
 class NewsList extends StatelessWidget {
   @override
@@ -27,12 +28,14 @@ class NewsList extends StatelessWidget {
         stream: bloc.topIds,
         builder: (context, AsyncSnapshot<List<int>> snapshot) {
           if (!snapshot.hasData) {
-            return Text('Still waiting on Ids');
+            return CircularProgressIndicator();
           }
           return ListView.builder(
             itemCount: snapshot.data.length,
             itemBuilder: (context, int index) {
-              return Text('$snapshot.data[index]');
+              bloc.fetchItem(snapshot.data[index]);
+              // return Text('${snapshot.data[index]}');
+              return NewsListTile(itemId: snapshot.data[index]);
             },
           );
         });
