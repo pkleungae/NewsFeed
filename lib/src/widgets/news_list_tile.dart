@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/item_model.dart';
 import '../blocs/stories_provider.dart';
 import 'dart:async';
+import 'loadingContainer.dart';
 
 class NewsListTile extends StatelessWidget {
   //Tile need to know which id it need to responsible for
@@ -24,7 +25,9 @@ class NewsListTile extends StatelessWidget {
               future: snapshot.data[itemId],
               builder: (context, AsyncSnapshot<ItemModel> itemSnapshot) {
                 if (!itemSnapshot.hasData) {
-                  return Text('Still loading $itemId');
+                  //future 未返果陣show 呢個
+                  return LoadingContainer();
+                  // return Text('Still loading $itemId');
                 }
                 return buildTile(itemSnapshot.data);
               });
