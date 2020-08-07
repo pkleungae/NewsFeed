@@ -29,7 +29,8 @@ class Repository {
         break;
       }
     }
-
+    // 如果source 唔係cache 黎, 咁cache 就要補返item
+    //就算
     for (var cache in caches) {
       //when the recieved item is not from cache db, then the db have to cache it.
       if (cache != source) {
@@ -38,6 +39,13 @@ class Repository {
     }
 
     return item;
+  }
+
+  //刪掉caches 的內容
+  clearCache() async {
+    for (var cache in caches) {
+      await cache.clear();
+    }
   }
 }
 

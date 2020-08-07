@@ -18,6 +18,7 @@ class ItemModel {
   //constructor for from json
   ItemModel.fromJson(Map<String, dynamic> parsedJson)
       : id = parsedJson['id'],
+        //operator means look at the value , by defalt it is false if null value
         deleted = parsedJson['deleted'] ?? false,
         type = parsedJson['type'],
         by = parsedJson['by'],
@@ -29,7 +30,8 @@ class ItemModel {
         url = parsedJson['url'],
         score = parsedJson['score'],
         title = parsedJson['title'],
-        descendants = parsedJson['descendants'];
+        //sometimes it may return null value due to no comment on jobs post. so it return null
+        descendants = parsedJson['descendants'] ?? 0;
 
   ItemModel.fromDb(Map<String, dynamic> parsedJson)
       : id = parsedJson['id'],

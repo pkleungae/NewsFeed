@@ -63,6 +63,10 @@ class StoriesBloc {
     );
   }
 
+  clearCache() {
+    //need to return future in advanced to repositiory , so that that await can be indicator to know when it is completed.
+    return _repository.clearCache();
+  }
   //retrive data from stream after processing
 //  Stream<String> get stories => _storiesController.stream.transform();
 
