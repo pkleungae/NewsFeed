@@ -29,15 +29,21 @@ class NewsListTile extends StatelessWidget {
                   return LoadingContainer();
                   // return Text('Still loading $itemId');
                 }
-                return buildTile(itemSnapshot.data);
+                return buildTile(context, itemSnapshot.data);
               });
         });
   }
 
-  Widget buildTile(ItemModel item) {
+  Widget buildTile(BuildContext context, ItemModel item) {
     return Column(
       children: <Widget>[
         ListTile(
+          onTap: () {
+            // Navigator.push(context, Route('/${item.id}');
+            //當被按時, navigator就傳送 item id 比on generatorroute
+            Navigator.pushNamed(context, '/${item.id}');
+            print('{$item.id} was tapped ');
+          },
           title: Text(item.title),
           subtitle: Text('${item.score} points'),
           trailing: Column(

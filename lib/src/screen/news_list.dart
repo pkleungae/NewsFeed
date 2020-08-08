@@ -31,7 +31,7 @@ class NewsList extends StatelessWidget {
           if (!snapshot.hasData) {
             return CircularProgressIndicator();
           }
-
+          //以refreah 包起 List view, 當list swipe 向上時, 重新更新db  , 刪下所有cache 記錄
           return Refresh(
             child: ListView.builder(
               itemCount: snapshot.data.length,
