@@ -29,11 +29,15 @@ class CommentsBloc {
 
     return ScanStreamTransformer<int, Map<int, Future<ItemModel>>>(
       (cache, int id, index) {
+        print(index);
+        // update cache table
         cache[id] = _repository.fetchItem(id);
         //只要future is returned and resolved, 就行
         cache[id].then((ItemModel item) {
           item.kids.forEach((kidId) => fetchItemWithComments(kidId));
         });
+
+        return cache;
       },
       <int, Future<ItemModel>>{},
     );
