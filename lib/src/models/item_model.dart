@@ -21,12 +21,13 @@ class ItemModel {
         //operator means look at the value , by defalt it is false if null value
         deleted = parsedJson['deleted'] ?? false,
         type = parsedJson['type'],
-        by = parsedJson['by'],
+        by = parsedJson['by'] ?? '',
         time = parsedJson['time'],
         text = parsedJson['text'] ?? '',
         dead = parsedJson['dead'] ?? false,
         parent = parsedJson['parent'],
-        kids = parsedJson['kids'],
+        //如果no kids return 比返個[] , 如果唔係後邊loop kids 果時, 最後係null 既話, 會有error
+        kids = parsedJson['kids'] ?? [],
         url = parsedJson['url'],
         score = parsedJson['score'],
         title = parsedJson['title'],

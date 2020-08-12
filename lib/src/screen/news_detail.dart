@@ -2,6 +2,7 @@ import 'package:NewsFeed/src/blocs/comments_provider.dart';
 import 'package:NewsFeed/src/models/item_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import '../widgets/comment.dart';
 
 class NewsDetail extends StatelessWidget {
   // 同News Detail communicate, 必須有paramenter 去hold item id
@@ -47,10 +48,22 @@ class NewsDetail extends StatelessWidget {
 // 第一個ITEM 為TOP LEVEL STORY 的ID , 所以detail's title 可以從那邊找
 // 第二個itemMap為build 起 comment 的所需要resource.
   Widget buildList(ItemModel item, Map<int, Future<ItemModel>> itemMap) {
+    final children = <Widget>[];
+    children.add(buildTitle(item));
+    // 拿出top level 的comments
+    final commentsList = item.kids.map((kidId) {
+      // 將每一個都用comments封好 再放入一個list 以供list view 用
+      return Comment(
+        itemId: kidId,
+        itemMap: itemMap,
+        depth: 0,
+      );
+    }).toList();
+
+    children.addAll(commentsList);
+
     return ListView(
-      children: <Widget>[
-        buildTitle(item),
-      ],
+      children: children,
     );
   }
 
